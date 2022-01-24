@@ -7,26 +7,37 @@ import re
 
 pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
-filename = "C:/Users/Admin/Desktop/SWOverlay/Cropped/99custom.png"
-
-def do_ocr(img1):
-
-    # img1 = np.array(Image.open(filename))
-
+def do_ocr(img):
     # Pre-processing
-    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    org_img = img
     kernel = np.ones((3, 3), np.uint8)
-    img1 = cv2.dilate(img1, kernel, iterations=1)
-    img1 = cv2.erode(img1, kernel, iterations=1)
+    img = cv2.dilate(img, kernel, iterations=1)
+    img = cv2.erode(img, kernel, iterations=1)
 
-    # OCR
-    text = pytesseract.image_to_string(img1, config='--psm 4')
+    # Split image into 3 sections for better OCR results (top, left, and right)
+    h, w = img.shape
+    crop_h = round(0.145 * h)
+    crop_w = round(0.65 * w)
 
-    # print(text)
+    # Top OCR - for level and set
+    top = img[:crop_h, round(0.2 * w):round(0.8 * w)]
+    top_text = pytesseract.image_to_string(top)
+    print(top_text)
 
-    text_byline = text.split("\n")
+    # Right OCR - for rarity of rune
+    right = org_img[crop_h:, crop_w:]
+    right_text = pytesseract.image_to_string(right)
+    rarity = right_text.split("\n")[0]
+    # print(right_text)
+    print(rarity)
 
-    print(text_byline)
+    # Left OCR - for stats
+    left = img[crop_h:, :crop_w]
+    left_text = pytesseract.image_to_string(left)
+    print(left_text)
+
+    text_byline = left_text.split("\n")
 
     keep = []
 
@@ -38,7 +49,7 @@ def do_ocr(img1):
         elif line.find('+') > 0:
             keep.append(line)
 
-    print("keep", keep)
+    # print("keep", keep)
 
     rune_stats = []
 
@@ -46,3 +57,8 @@ def do_ocr(img1):
         rune_stats.append(re.findall("([A-Z].*)([+][0-9]*.)", stat)[0])
 
     print(rune_stats)
+
+if __name__ == "__main__":
+    filename = "C:/Users/Admin/Desktop/SWOverlay/Cropped/4.png"
+    img2 = np.array(Image.open(filename))
+    do_ocr(img2)
