@@ -1,0 +1,12 @@
+type,stat,max
+Percent,HP,40
+Percent,ATK,40
+Percent,DEF,40
+Flat,HP,1875
+Flat,ATK,100
+Flat,DEF,100
+Flat,SPD,30
+Percent,CRI Rate,30
+Percent,CRI Dmg,35
+Percent,Resistance,40
+Percent,Accuracy,40
