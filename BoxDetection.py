@@ -1,7 +1,7 @@
 import cv2
 
-# Load iamge, grayscale, adaptive threshold
-image = cv2.imread("C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02-43-35.png")
+# Load image, grayscale, adaptive threshold
+image = cv2.imread("C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-01-08-07-26.png")
 
 result = image.copy()
 gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -51,9 +51,7 @@ contours, hierarchy = cv2.findContours(opening, cv2.RETR_TREE, cv2.CHAIN_APPROX_
 # Sort all the contours by top to bottom.
 (contours, boundingBoxes) = sort_contours(contours, method="top-to-bottom")
 
-cropped_dir_path = "C:/Users/Admin/Desktop/SWOverlay/Cropped/"
-
-cv2.imwrite(cropped_dir_path + 'opening.png', opening)
+cropped_images = []
 
 idx = 0
 for c in contours:
@@ -63,12 +61,12 @@ for c in contours:
     if w > 500:
         idx += 1
         new_img = result[y:y+h, x:x+w]
-        cv2.imwrite(cropped_dir_path+str(idx) + '.png', new_img)
+        cropped_images.append(new_img)
 
-# cv2.imshow('thresh', thresh)
-# cv2.imshow('opening', opening)
-# cv2.imshow('image', image)
-# cv2.imshow('result', result)
-# cv2.imshow('test', test)
+# Check list is being created properly
+n = 0
+for img in cropped_images:
+	cv2.imshow('{n}'.format(n = n), img)
+	n += 1
 
-# cv2.waitKey(0)
+cv2.waitKey(0)
