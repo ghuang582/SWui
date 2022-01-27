@@ -13,8 +13,7 @@ def screenGrab( rect =[2560, 25, 885, 540] ):
     x, y, width, height = rect
 
     if ( use_grab ):
-        image = PIL.ImageGrab.grab( bbox=[ x, y, x+width, y+height ], all_screens = True )
+        image = PIL.ImageGrab.grab( bbox=[ x, y, x + width, y + height ], all_screens = True )
 
     return image
-
 
