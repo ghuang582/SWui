@@ -1,13 +1,17 @@
+import numpy as np
 import cv2
 
-def crop_boxes(path = "C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02-43-35.png"):
+def crop_boxes(img = "C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02-43-35.png"):
     cropped_images = []
 
     # Load image, grayscale, adaptive threshold
-    image = cv2.imread(path)
+    if type(img) == str:
+        image = cv2.imread(img)
+    else:
+        image = np.array(img)
 
     result = image.copy()
-    gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,51,9)
 
     # Fill rectangular contours
@@ -27,17 +31,17 @@ def crop_boxes(path = "C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02
         x,y,w,h = cv2.boundingRect(c)
         cv2.rectangle(image, (x, y), (x + w, y + h), (36,255,12), 3)
     
-    contours, hierarchy = cv2.findContours(opening, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, hiearchy = cv2.findContours(opening, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-    # Sort all the contours by top to bottom.
-    (contours, boundingBoxes) = sort_contours(contours, method="top-to-bottom")
+    # Unpack image dimensions
+    i_h, i_w, i_c = image.shape
 
     idx = 0
     for c in contours:
         # Returns the location and width,height for every contour
         x, y, w, h = cv2.boundingRect(c)
 
-        if w > 500:
+        if w > 0.4 * i_w:
             idx += 1
             new_img = result[y:y+h, x:x+w]
             cropped_images.append(new_img)
@@ -67,8 +71,17 @@ def sort_contours(cnts, method="left-to-right"):
 # Check list is being created properly
 # n = 0
 # for img in cropped_images:
-# 	print(img)
-    # cv2.imshow('{n}'.format(n = n), img)
-    # n += 1
+#     print(img)
+#     cv2.imshow('{n}'.format(n = n), img)
+#     n += 1
 
-cv2.waitKey(0)
+# cv2.waitKey(0)
+
+# import RecordScreen
+# import PIL
+
+# snapshot = RecordScreen.screenGrab()
+# # snapshot.show()
+# # gray = cv2.cvtColor(snapshot, cv2.COLOR_BGR2GRAY)
+# test = crop_boxes(snapshot)
+# print(test)
