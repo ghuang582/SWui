@@ -23,19 +23,15 @@ def do_ocr(img):
     # Top OCR - for level and set
     top = img[:crop_h, round(0.2 * w):round(0.8 * w)]
     top_text = pytesseract.image_to_string(top)
-    print(top_text)
 
     # Right OCR - for rarity of rune
     right = org_img[crop_h:, crop_w:]
     right_text = pytesseract.image_to_string(right)
     rarity = right_text.split("\n")[0]
-    # print(right_text)
-    print(rarity)
 
     # Left OCR - for stats
     left = img[crop_h:, :crop_w]
     left_text = pytesseract.image_to_string(left)
-    print(left_text)
 
     text_byline = left_text.split("\n")
 
@@ -49,14 +45,14 @@ def do_ocr(img):
         elif line.find('+') > 0:
             keep.append(line)
 
-    # print("keep", keep)
-
     rune_stats = []
 
     for stat in keep:
         rune_stats.append(re.findall("([A-Z].*)([+][0-9]*.)", stat)[0])
 
-    print(rune_stats)
+    rune_info = [top_text.split(" ")[0], rarity]
+
+    return [rune_info, rune_stats]
 
 if __name__ == "__main__":
     filename = "C:/Users/Admin/Desktop/SWOverlay/Cropped/4.png"
