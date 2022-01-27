@@ -6,139 +6,103 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>200</width>
-    <height>327</height>
+    <width>201</width>
+    <height>268</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="Rune">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>11</y>
-      <width>181</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Rune</string>
-    </property>
-    <widget class="QLabel" name="MainStat">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Main Stat</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Innate">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Innate</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Slot1">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Slot 1</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Slot2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>80</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Slot 2</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Slot3">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>60</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Slot 3</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Slot4">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>80</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Slot 4</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Efficiency">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>20</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Efficiency</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Update</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="Rune">
+      <property name="title">
+       <string>Rune</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="MainStat">
+         <property name="text">
+          <string>Main Stat</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="Rarity">
+         <property name="text">
+          <string>Rarity</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="Innate">
+         <property name="text">
+          <string>Innate</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="Slot1">
+         <property name="text">
+          <string>Slot 1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="Slot3">
+         <property name="text">
+          <string>Slot 3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="Slot2">
+         <property name="text">
+          <string>Slot 2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLabel" name="Slot4">
+         <property name="text">
+          <string>Slot 4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="CurrEff">
+         <property name="text">
+          <string>CurrEff</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLabel" name="MaxEff">
+         <property name="text">
+          <string>MaxEff</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="CallUpdate">
+      <property name="text">
+       <string>Update</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>200</width>
-     <height>21</height>
+     <width>201</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
