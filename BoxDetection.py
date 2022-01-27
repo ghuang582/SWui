@@ -29,23 +29,23 @@ def crop_boxes(img = "C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02-
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     for c in cnts:
         x,y,w,h = cv2.boundingRect(c)
-        cv2.rectangle(image, (x, y), (x + w, y + h), (36,255,12), 3)
+        cv2.rectangle(image, (x, y), (x + w, y + h), (36, 255, 12), 3)
     
-    contours, hiearchy = cv2.findContours(opening, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contours, hierarchy = cv2.findContours(opening, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     # Unpack image dimensions
     i_h, i_w, i_c = image.shape
 
     idx = 0
     for c in contours:
-        # Returns the location and width,height for every contour
+        # Returns the location, width, and height for every contour
         x, y, w, h = cv2.boundingRect(c)
 
         if w > 0.4 * i_w:
             idx += 1
             new_img = result[y:y+h, x:x+w]
             cropped_images.append(new_img)
-    
+
     return cropped_images
 
 # Helper function
