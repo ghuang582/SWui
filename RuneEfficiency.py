@@ -12,11 +12,15 @@ max_stats = pd.read_csv(r"C:\Users\Admin\Desktop\SWOverlay\max_stats_table.csv")
 def CalcEff(rune_list):
     rune = rune_list[1]
     rune_level = rune_list[0][0]
+    
     # Trim white space from each entry
     rune = [[desc.strip() for desc in line] for line in rune]
 
     # Create dataframe and additional columns
     rune_df = pd.DataFrame(rune, columns = ["stat", "value"])
+
+    # Delete rows with filler slots (e.g. Slot 3)
+    rune_df = rune_df[~rune_df.stat.str.contains("Slot")]
 
     rune_df['raw_value'] = rune_df['value'].str.replace(r"\D+", "", regex = True).astype('int')
     rune_df['type'] = np.where(rune_df['value'].str.find("%") > 0, "Percent", "Flat")
@@ -38,5 +42,6 @@ def CalcEff(rune_list):
     # Calculate max efficiency of rune
     max_eff = total_eff + max((12 - rune_level)/3, 0) * 0.2 / 2.8
     # print(max_eff)
+
 
     return [total_eff, max_eff]
