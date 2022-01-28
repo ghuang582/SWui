@@ -58,7 +58,10 @@ class MyApp(QMainWindow):
     def callUpdate(self):
         print("update")
 
-        snapshot = RecordScreen.screenGrab()
+        # snapshot = RecordScreen.screenGrab()
+        snapshot = RecordScreen.screenshot('NoxPlayer2')
+        if snapshot:
+            snapshot.show()
         cropped = BoxDetection.crop_boxes(snapshot)
         print('mid')
         rune = OCR.do_ocr(cropped[0])
@@ -67,20 +70,6 @@ class MyApp(QMainWindow):
         print('call')
         
         self.updateRune(rune, eff)
-
-        # n = 20
-        # for img in cropped:
-        #     cv2.imshow('{n}'.format(n = n), img)
-        #     n += 1
-
-        #     if n > 5:
-        #         break
-        
-        # cv2.waitKey(0)
-
-
-cropped_dir_path = "C:/Users/Admin/Desktop/SWOverlay/Cropped/"
-
         
 app = QApplication(sys.argv)
 window = MyApp()
