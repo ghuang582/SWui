@@ -34,10 +34,19 @@ def do_ocr(img):
     left = img[crop_h:, :crop_w]
     left_text = pytesseract.image_to_string(left, config = '--psm 11')
 
-    left_text_2nd = pytesseract.image_to_string(left)    
+    left_2nd = img[crop_h:, :crop_w]
+    left_text_2nd = pytesseract.image_to_string(left_2nd) 
 
-    if len(left_text_2nd) > len(left_text):
-        left_text = left_text_2nd
+    left_3rd = org_img[crop_h:, :crop_w]
+    left_text_3rd = pytesseract.image_to_string(left_3rd) 
+
+    options = [left_text, left_text_2nd, left_text_3rd]
+    left_text = max(options, key = len)
+
+    # if len(left_text_2nd) > len(left_text):
+    #     left_text = left_text_2nd
+    # print(left_text_2nd)
+    # print(left_text)
 
     # # If initial pass returns nothing, try again but with original image
     # # Arbitrary conditions, selected from observations of edge cases
