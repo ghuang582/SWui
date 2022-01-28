@@ -8,7 +8,7 @@ import BoxDetection
 import OCR
 import RuneEfficiency
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType("SWtemplate.ui")
+Ui_MainWindow, QtBaseClass = uic.loadUiType("SWtemplate_v2.ui")
 
 class MyApp(QMainWindow):
     def __init__(self):
@@ -16,7 +16,6 @@ class MyApp(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # self.updateRune()
         self.ui.CallUpdate.clicked.connect(self.callUpdate)
 
     def updateRune(self, rune = [], efficiency = []):
@@ -35,7 +34,11 @@ class MyApp(QMainWindow):
             if hasInnate == 1:
                 Innate = ''.join(map(str, rune[1][1]))
                 self.ui.Innate.setText(Innate)
+            else:
+                self.ui.Innate.setText(" - ")
+                
             print('err2')
+
             Slot1 = ''.join(map(str, rune[1][1 + hasInnate]))
             self.ui.Slot1.setText(Slot1)
 
