@@ -30,8 +30,14 @@ def do_ocr(img):
     rarity = right_text.split("\n")[0]
 
     # Left OCR - for stats
+    # Take OCR with longer string, assume it has the more correct version
     left = img[crop_h:, :crop_w]
     left_text = pytesseract.image_to_string(left, config = '--psm 11')
+
+    left_text_2nd = pytesseract.image_to_string(left)    
+
+    if len(left_text_2nd) > len(left_text):
+        left_text = left_text_2nd
 
     # # If initial pass returns nothing, try again but with original image
     # # Arbitrary conditions, selected from observations of edge cases
@@ -94,8 +100,11 @@ if __name__ == "__main__":
     import BoxDetection
     import PIL
 
+    # snapshot = RecordScreen.screenshot('NoxPlayer2')
     snapshot = RecordScreen.screenGrab()
+
     # snapshot.show()
     cropped = BoxDetection.crop_boxes(snapshot)
+    # print(cropped)
     rune = do_ocr(cropped[0])
     print(rune)
