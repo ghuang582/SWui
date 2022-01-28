@@ -70,8 +70,15 @@ def do_ocr(img):
     elif rarity.find("Hero") != -1 and lines_no > 4:
         rune_info[2] = 1
     elif rarity.find("Rare") != -1 and lines_no > 3:
-            rune_info[2] = 1  
+            rune_info[2] = 1
+    
+    # Fill rune_stats list to ensure output always has the same length of 5 (6 if rune has an innate stat)
+    cap = 5 + rune_info[2]
 
+    while lines_no < cap:
+        rune_stats.append(('Slot {n}'.format(n = lines_no - rune_info[2]), ''))
+        lines_no = len(rune_stats)
+        
     return [rune_info, rune_stats]
 
 # if __name__ == "__main__":
