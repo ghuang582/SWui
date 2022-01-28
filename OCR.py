@@ -57,9 +57,12 @@ def do_ocr(img):
     for stat in keep:
         rune_stats.append(re.findall("([A-Z].*)([+][0-9]*.)", stat)[0])
 
-    # Keep only numerics in string, and convert to numeric
+    # Keep only numerics in string, and convert to numeric.
     level = top_text.split(" ")[0]
-    level = int(re.sub("[^0-9]", "", level))
+    try:
+        level = int(re.sub("[^0-9]", "", level))
+    except ValueError:
+        level = 0
 
     rune_info = [level, rarity, 0]
 
@@ -78,20 +81,21 @@ def do_ocr(img):
     while lines_no < cap:
         rune_stats.append(('Slot {n}'.format(n = lines_no - rune_info[2]), ''))
         lines_no = len(rune_stats)
-        
+
+
     return [rune_info, rune_stats]
 
-# if __name__ == "__main__":
-#     # filename = "C:/Users/Admin/Desktop/SWOverlay/Cropped/break_case2.png"
-#     # img2 = np.array(Image.open(filename))
-#     # print( do_ocr(img2))
+if __name__ == "__main__":
+    # filename = "C:/Users/Admin/Desktop/SWOverlay/Cropped/break_case2.png"
+    # img2 = np.array(Image.open(filename))
+    # print( do_ocr(img2))
 
-#     import RecordScreen
-#     import BoxDetection
-#     import PIL
+    import RecordScreen
+    import BoxDetection
+    import PIL
 
-#     snapshot = RecordScreen.screenGrab()
-#     # snapshot.show()
-#     cropped = BoxDetection.crop_boxes(snapshot)
-#     rune = do_ocr(cropped[0])
-#     print(rune)
+    snapshot = RecordScreen.screenGrab()
+    # snapshot.show()
+    cropped = BoxDetection.crop_boxes(snapshot)
+    rune = do_ocr(cropped[0])
+    print(rune)
