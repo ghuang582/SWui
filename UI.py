@@ -26,29 +26,29 @@ class MyApp(QMainWindow):
         else:
             print('state2')
             print(rune)
-            MainStat = ''.join(map(str, rune[1][0]))
+            MainStat = ' '.join(map(str, rune[1][0]))
             self.ui.MainStat.setText(MainStat)
 
             hasInnate = rune[0][2]
 
             if hasInnate == 1:
-                Innate = ''.join(map(str, rune[1][1]))
+                Innate = ' '.join(map(str, rune[1][1]))
                 self.ui.Innate.setText(Innate)
             else:
                 self.ui.Innate.setText(" - ")
                 
             print('err2')
 
-            Slot1 = ''.join(map(str, rune[1][1 + hasInnate]))
+            Slot1 = ' '.join(map(str, rune[1][1 + hasInnate]))
             self.ui.Slot1.setText(Slot1)
 
-            Slot2 = ''.join(map(str, rune[1][2 + hasInnate]))
+            Slot2 = ' '.join(map(str, rune[1][2 + hasInnate]))
             self.ui.Slot2.setText(Slot2)
 
-            Slot3 = ''.join(map(str, rune[1][3 + hasInnate]))
+            Slot3 = ' '.join(map(str, rune[1][3 + hasInnate]))
             self.ui.Slot3.setText(Slot3)
 
-            Slot4 = ''.join(map(str, rune[1][4 + hasInnate]))
+            Slot4 = ' '.join(map(str, rune[1][4 + hasInnate]))
             self.ui.Slot4.setText(Slot4)          
             print('err3')
             self.ui.Rarity.setText(rune[0][1])
