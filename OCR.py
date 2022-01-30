@@ -97,8 +97,56 @@ def do_ocr(img):
         rune_stats.append(('Slot {n}'.format(n = lines_no - rune_info[2]), ''))
         lines_no = len(rune_stats)
 
+    # Clean whitespace at ends of entries
+    rune_stats = [[desc.strip() for desc in line] for line in rune_stats]
+
+    # Clean rune stats output using cleanRune function. Better to use list exclusively instead of tuples, but I'm not bothered fixing.
+    for count, line in enumerate(rune_stats):
+        line = list(line)
+        line = cleanRune(line)
+        line = tuple(line)
+        rune_stats[count] = line
 
     return [rune_info, rune_stats]
+
+# List of possible stats to match and clean to.
+possible_stats = [
+    "HP"
+    , "ATK"
+    , "DEF"
+    , "SPD"
+    , "CRI Rate"
+    , "CRI Dmg"
+    , "Accuracy"
+    , "Resistance"
+]
+
+# Manual adjustments
+manual_adjustments = [
+    ("P", "HP")
+    , ("CRI Rete", "CRI Rate")
+    , ("AtK", "ATK")
+    , ("Atk", "ATK")
+    , ("CRIDmg", "CRI Dmg")
+]
+
+# Function to fix common OCR errors.
+def cleanRune(rune_line):
+    for stat in possible_stats:
+        if rune_line[0].find(stat) != -1:
+            rune_line[0] = stat
+
+            return rune_line
+    
+    for adj in manual_adjustments:
+        if rune_line[0] == adj[0]:
+            rune_line[0] = adj[1]
+
+            return rune_line
+
+    return rune_line
+    
+
 
 if __name__ == "__main__":
     # filename = "C:/Users/Admin/Desktop/SWOverlay/Cropped/break_case2.png"
