@@ -13,8 +13,8 @@ def CalcEff(rune_list):
     rune = rune_list[1]
     rune_level = rune_list[0][0]
     
-    # Trim white space from each entry
-    rune = [[desc.strip() for desc in line] for line in rune]
+    # # Trim white space from each entry
+    # rune = [[desc.strip() for desc in line] for line in rune]
 
     # Create dataframe and additional columns
     rune_df = pd.DataFrame(rune, columns = ["stat", "value"])
