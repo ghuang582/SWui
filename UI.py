@@ -8,7 +8,7 @@ import BoxDetection
 import OCR
 import RuneEfficiency
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType("SWtemplate_v2.ui")
+Ui_MainWindow, QtBaseClass = uic.loadUiType("SWtemplate_v3.ui")
 
 class MyApp(QMainWindow):
     def __init__(self):
@@ -60,10 +60,14 @@ class MyApp(QMainWindow):
 
         # snapshot = RecordScreen.screenGrab()
         snapshot = RecordScreen.screenshot('NoxPlayer2')
-        if snapshot:
-            snapshot.show()
+        # if snapshot:
+        #     snapshot.show()
         cropped = BoxDetection.crop_boxes(snapshot)
         print('mid')
+        # Exit update call if cropped did not get find any boxes to OCR
+        if cropped == []:
+            return
+        print('test')
         rune = OCR.do_ocr(cropped[0])
         eff = RuneEfficiency.CalcEff(rune)
 
