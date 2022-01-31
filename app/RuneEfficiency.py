@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 
-max_stats = pd.read_csv(r"C:\Users\Admin\Desktop\SWOverlay\max_stats_table.csv")
+max_stats = pd.read_csv(r"C:\Users\Admin\Desktop\SWOverlay\app\dependencies\max_stats_table.csv")
 
 # rune = [('DEF ', '+160 '), ('Accuracy ', '+7%'), ('CRI Dmg ', '+6%'), ('SPD ', '+24 '), ('HP ', '+12%')]
 # rune = [('DEF ', '+160 '), ('ATK ', '+61'), ('CRI Rate ', '+17%'), ('CRI Dmg ', '6% '), ('HP ', '+363')]
