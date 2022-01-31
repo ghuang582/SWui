@@ -1,7 +1,0 @@
-{
-    "python.pythonPath": "C:\\Users\\Admin\\.conda\\envs\\conda_py3.7\\python.exe",
-    "code-runner.executorMap":
-    {
-        "python": "$pythonPath -u $fullFileName"
-    }
-}
