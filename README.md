@@ -5,4 +5,4 @@ This tool calculates the current and maximum efficiency of any rune on screen, a
 
 ![img](/Demo.png?raw=true)
 
-It first searches for any boxes (rectangles) on the emulator screen. Then it uses Tesseract's optical character recognition (OCR) engine to parse the data in input boxes. This data is then used to calculate current and maximum efficiency. Formula and weights are identical to the defaults in Xzandro's Summoners War Optimizer.
+It first searches for any boxes (green rectangles in above image) on the emulator screen. Then it uses Tesseract's optical character recognition (OCR) engine to parse the data in input boxes. This data is then used to calculate current and maximum efficiency. Formula and weights are identical to the defaults in Xzandro's Summoners War Optimizer.
