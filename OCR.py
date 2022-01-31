@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 import re
 
-pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
 
 def do_ocr(img):
     img = np.array(img)
@@ -42,18 +42,6 @@ def do_ocr(img):
 
     options = [left_text, left_text_2nd, left_text_3rd]
     left_text = max(options, key = len)
-
-    # if len(left_text_2nd) > len(left_text):
-    #     left_text = left_text_2nd
-    # print(left_text_2nd)
-    # print(left_text)
-
-    # # If initial pass returns nothing, try again but with original image
-    # # Arbitrary conditions, selected from observations of edge cases
-    # if len(left_text) < 5 or left_text.find('+') == -1:
-    #     print('2nd')
-    #     left = org_img[crop_h:, :crop_w]
-    #     left_text = pytesseract.image_to_string(left, config = '--psm 11')
 
     text_byline = left_text.split("\n")
 
@@ -128,6 +116,7 @@ manual_adjustments = [
     , ("AtK", "ATK")
     , ("Atk", "ATK")
     , ("CRIDmg", "CRI Dmg")
+    , ("S12 CRIDmg", "CRI Dmg")
 ]
 
 # Function to fix common OCR errors.
