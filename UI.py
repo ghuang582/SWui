@@ -70,7 +70,7 @@ class MyApp(QMainWindow):
         print('test')
         rune = OCR.do_ocr(cropped[0])
         eff = RuneEfficiency.CalcEff(rune)
-
+        
         print('call')
         
         self.updateRune(rune, eff)
