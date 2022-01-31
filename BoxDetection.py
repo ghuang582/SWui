@@ -82,6 +82,14 @@ def sort_contours(cnts, method="left-to-right"):
 
 # snapshot = RecordScreen.screenGrab()
 # # snapshot.show()
+# cropped_images = crop_boxes(snapshot)
+# n = 0
+# for img in cropped_images:
+#     # print(img)
+#     cv2.imshow('{n}'.format(n = n), img)
+#     n += 1
+
+# cv2.waitKey(0)
 # # gray = cv2.cvtColor(snapshot, cv2.COLOR_BGR2GRAY)
 # test = crop_boxes(snapshot)
 # print(test)
