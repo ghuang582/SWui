@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-def crop_boxes(img = "app\dependencies\box_detection_test.png"):
+def cropBoxes(img = "app\dependencies\box_detection_test.png"):
     cropped_images = []
 
     # Load image, grayscale, adaptive threshold
@@ -46,7 +46,7 @@ def crop_boxes(img = "app\dependencies\box_detection_test.png"):
     return cropped_images
 
 # Helper function, sorts detected boxes from user-defined method e.g. left-to-right
-def sort_contours(cnts, method="left-to-right"):
+def sortContours(cnts, method="left-to-right"):
     # Initialize the reverse flag and sort index
     reverse = False
     i = 0
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
     snapshot = RecordScreen.screenGrab()
     # snapshot.show()
-    cropped_images = crop_boxes(snapshot)
+    cropped_images = cropBoxes(snapshot)
     n = 0
     for img in cropped_images:
         # print(img)

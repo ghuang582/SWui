@@ -3,11 +3,11 @@ import numpy as np
 import cv2
 import re
 
-import setup
+import config
 
-pytesseract.pytesseract.tesseract_cmd = setup.pytesseract_path
+pytesseract.pytesseract.tesseract_cmd = config.pytesseract_path
 
-def do_ocr(img):
+def doOCR(img):
     img = np.array(img)
 
     # Pre-processing
@@ -146,8 +146,8 @@ if __name__ == "__main__":
     # snapshot = RecordScreen.screenshot('NoxPlayer2')
     snapshot = RecordScreen.screenGrab()
     # snapshot.show()
-    
+
     cropped = BoxDetection.crop_boxes(snapshot)
     # print(cropped)
-    rune = do_ocr(cropped[0])
+    rune = doOCR(cropped[0])
     print(rune)

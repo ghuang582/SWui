@@ -3,7 +3,7 @@ import numpy as np
 
 max_stats = pd.read_csv("app\dependencies\max_stats_table.csv")
 
-def CalcEff(rune_list):
+def calcEff(rune_list):
     rune = rune_list[1]
     rune_level = rune_list[0][0]
 

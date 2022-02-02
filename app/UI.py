@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import uic
 
-import setup
+import config
 import RecordScreen
 import BoxDetection
 import OCR
@@ -50,15 +50,15 @@ class MyApp(QMainWindow):
             self.ui.MaxEff.setText("{0:.2%}".format(efficiency[1]))      
     
     def callUpdate(self):
-        snapshot = RecordScreen.screenshot(setup.window_name)
-        cropped = BoxDetection.crop_boxes(snapshot)
+        snapshot = RecordScreen.screenshot(config.window_name)
+        cropped = BoxDetection.cropBoxes(snapshot)
 
         # Exit update call if cropped did not get find any boxes to OCR
         if cropped == []:
             return
 
-        rune = OCR.do_ocr(cropped[0])
-        eff = RuneEfficiency.CalcEff(rune)
+        rune = OCR.doOCR(cropped[0])
+        eff = RuneEfficiency.calcEff(rune)
         
         self.updateRune(rune, eff)
 
