@@ -28,10 +28,13 @@ It first searches for any boxes (green rectangle in above image) on the emulator
     ```
     python -m pip install -r requirements.txt
     ```
+3. Configure settings in config.py with an editor. You may need to change:
+    - ```window_name``` to the name of your emulator (currently only tested on NoxPlayer)
+    - ```pytesseract_path``` and redirect the path to where you installed Tesseract
     
 **Running:**
 ```
-python3 run.py
+python run.py
 ```
 
 
