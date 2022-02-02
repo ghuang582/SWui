@@ -2,12 +2,12 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import uic
 
-import app.RecordScreen
-import app.BoxDetection
-import app.OCR
-import app.RuneEfficiency
+import RecordScreen
+import BoxDetection
+import OCR
+import RuneEfficiency
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType("SWtemplate_v3.ui")
+Ui_MainWindow, QtBaseClass = uic.loadUiType("app\dependencies\SWtemplate_v3.ui")
 
 class MyApp(QMainWindow):
     def __init__(self):
@@ -58,17 +58,17 @@ class MyApp(QMainWindow):
         print("update")
 
         # snapshot = RecordScreen.screenGrab()
-        snapshot = app.RecordScreen.screenshot('NoxPlayer2')
+        snapshot = RecordScreen.screenshot('NoxPlayer2')
         # if snapshot:
         #     snapshot.show()
-        cropped = app.BoxDetection.crop_boxes(snapshot)
+        cropped = BoxDetection.crop_boxes(snapshot)
         print('mid')
         # Exit update call if cropped did not get find any boxes to OCR
         if cropped == []:
             return
         print('test')
-        rune = app.OCR.do_ocr(cropped[0])
-        eff = app.RuneEfficiency.CalcEff(rune)
+        rune = OCR.do_ocr(cropped[0])
+        eff = RuneEfficiency.CalcEff(rune)
         
         print('call')
         
@@ -79,3 +79,6 @@ def run():
     window = MyApp()
     window.show()
     sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    run()
