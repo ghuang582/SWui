@@ -25,5 +25,5 @@ def screenshot(window_title=None):
         else:
             print('Window not found!')
     else:
-        print('no')
+        print('No window input to search for.')
 

@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-def crop_boxes(img = "C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02-43-35.png"):
+def crop_boxes(img = "app\dependencies\box_detection_test.png"):
     cropped_images = []
 
     # Load image, grayscale, adaptive threshold
@@ -12,13 +12,13 @@ def crop_boxes(img = "C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02-
 
     result = image.copy()
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    thresh = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,51,9)
+    thresh = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 51, 9)
 
     # Fill rectangular contours
     cnts = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     for c in cnts:
-        cv2.drawContours(thresh, [c], -1, (255,255,255), -1)
+        cv2.drawContours(thresh, [c], -1, (255, 255, 255), -1)
 
     # Morph open
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (9, 9))
@@ -28,44 +28,32 @@ def crop_boxes(img = "C:/Users/Admin/Desktop/SWOverlay/Screenshot_2022-01-18-02-
     cnts = cv2.findContours(opening, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     for c in cnts:
-        x,y,w,h = cv2.boundingRect(c)
+        x, y, w, h = cv2.boundingRect(c)
         cv2.rectangle(image, (x, y), (x + w, y + h), (36, 255, 12), 3)
     
     contours, hierarchy = cv2.findContours(opening, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-    # Unpack image dimensions
-    i_h, i_w, i_c = image.shape
 
     idx = 0
     for c in contours:
         # Returns the location, width, and height for every contour
         x, y, w, h = cv2.boundingRect(c)
 
-        # if w > 0.4 * i_w:
-        #     idx += 1
-        #     new_img = result[y:y+h, x:x+w]
-        #     cropped_images.append(new_img)
-
         if abs(w/h - 1.56) < 0.02 or abs(w/h - 1.19) < 0.01:
             idx += 1
             new_img = result[y:y+h, x:x+w]
-            cropped_images.append(new_img)  
-        #     print(w)
-        #     print(h)
+            cropped_images.append(new_img)
 
-        # new_img = result[y:y+h, x:x+w]
-        # cropped_images.append(new_img)
     return cropped_images
 
-# Helper function
+# Helper function, sorts detected boxes from user-defined method e.g. left-to-right
 def sort_contours(cnts, method="left-to-right"):
-    # initialize the reverse flag and sort index
+    # Initialize the reverse flag and sort index
     reverse = False
     i = 0
-    # handle if we need to sort in reverse
+    # Handle if we need to sort in reverse
     if method == "right-to-left" or method == "bottom-to-top":
         reverse = True
-    # handle if we are sorting against the y-coordinate rather than
+    # Handle if we are sorting against the y-coordinate rather than
     # the x-coordinate of the bounding box
     if method == "top-to-bottom" or method == "bottom-to-top":
         i = 1
@@ -74,20 +62,11 @@ def sort_contours(cnts, method="left-to-right"):
     boundingBoxes = [cv2.boundingRect(c) for c in cnts]
     (cnts, boundingBoxes) = zip(*sorted(zip(cnts, boundingBoxes),
         key=lambda b:b[1][i], reverse=reverse))
-    # return the list of sorted contours and bounding boxes
+
+    # Return the list of sorted contours and bounding boxes
     return (cnts, boundingBoxes)
 
 if __name__ == "__main__":
-
-    # Check list is being created properly
-    # n = 0
-    # for img in cropped_images:
-    #     print(img)
-    #     cv2.imshow('{n}'.format(n = n), img)
-    #     n += 1
-
-    # cv2.waitKey(0)
-
     import RecordScreen
 
     snapshot = RecordScreen.screenGrab()
@@ -100,6 +79,3 @@ if __name__ == "__main__":
         n += 1
 
     cv2.waitKey(0)
-    # # gray = cv2.cvtColor(snapshot, cv2.COLOR_BGR2GRAY)
-    # test = crop_boxes(snapshot)
-    # print(test)

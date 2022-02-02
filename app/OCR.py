@@ -140,18 +140,13 @@ def cleanRune(rune_line):
 
 
 if __name__ == "__main__":
-    # filename = "C:/Users/Admin/Desktop/SWOverlay/Cropped/break_case2.png"
-    # img2 = np.array(Image.open(filename))
-    # print( do_ocr(img2))
-
     import RecordScreen
     import BoxDetection
-    import PIL
 
     # snapshot = RecordScreen.screenshot('NoxPlayer2')
     snapshot = RecordScreen.screenGrab()
-
     # snapshot.show()
+    
     cropped = BoxDetection.crop_boxes(snapshot)
     # print(cropped)
     rune = do_ocr(cropped[0])

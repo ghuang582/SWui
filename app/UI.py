@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5 import uic
 
+import setup
 import RecordScreen
 import BoxDetection
 import OCR
@@ -19,12 +20,8 @@ class MyApp(QMainWindow):
 
     def updateRune(self, rune = [], efficiency = []):
         if rune[1] == []:
-            print('err1')
-            print(rune)
-            self.ui.MainStat.setText("hi")
+            self.ui.MainStat.setText("Empty Rune Input")
         else:
-            print('state2')
-            print(rune)
             MainStat = ' '.join(map(str, rune[1][0]))
             self.ui.MainStat.setText(MainStat)
 
@@ -35,8 +32,6 @@ class MyApp(QMainWindow):
                 self.ui.Innate.setText(Innate)
             else:
                 self.ui.Innate.setText(" - ")
-                
-            print('err2')
 
             Slot1 = ' '.join(map(str, rune[1][1 + hasInnate]))
             self.ui.Slot1.setText(Slot1)
@@ -49,28 +44,21 @@ class MyApp(QMainWindow):
 
             Slot4 = ' '.join(map(str, rune[1][4 + hasInnate]))
             self.ui.Slot4.setText(Slot4)          
-            print('err3')
+
             self.ui.Rarity.setText(rune[0][1])
             self.ui.CurrEff.setText("{0:.2%}".format(efficiency[0]))
             self.ui.MaxEff.setText("{0:.2%}".format(efficiency[1]))      
     
     def callUpdate(self):
-        print("update")
-
-        # snapshot = RecordScreen.screenGrab()
-        snapshot = RecordScreen.screenshot('NoxPlayer2')
-        # if snapshot:
-        #     snapshot.show()
+        snapshot = RecordScreen.screenshot(setup.window_name)
         cropped = BoxDetection.crop_boxes(snapshot)
-        print('mid')
+
         # Exit update call if cropped did not get find any boxes to OCR
         if cropped == []:
             return
-        print('test')
+
         rune = OCR.do_ocr(cropped[0])
         eff = RuneEfficiency.CalcEff(rune)
-        
-        print('call')
         
         self.updateRune(rune, eff)
 
