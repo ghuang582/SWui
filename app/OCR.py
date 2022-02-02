@@ -3,7 +3,9 @@ import numpy as np
 import cv2
 import re
 
-# pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract.exe'
+import setup
+
+pytesseract.pytesseract.tesseract_cmd = setup.pytesseract_path
 
 def do_ocr(img):
     img = np.array(img)
