@@ -77,28 +77,29 @@ def sort_contours(cnts, method="left-to-right"):
     # return the list of sorted contours and bounding boxes
     return (cnts, boundingBoxes)
 
-# Check list is being created properly
-# n = 0
-# for img in cropped_images:
-#     print(img)
-#     cv2.imshow('{n}'.format(n = n), img)
-#     n += 1
+if __name__ == "__main__":
 
-# cv2.waitKey(0)
+    # Check list is being created properly
+    # n = 0
+    # for img in cropped_images:
+    #     print(img)
+    #     cv2.imshow('{n}'.format(n = n), img)
+    #     n += 1
 
-import RecordScreen
-import PIL
+    # cv2.waitKey(0)
 
-snapshot = RecordScreen.screenGrab()
-# snapshot.show()
-cropped_images = crop_boxes(snapshot)
-n = 0
-for img in cropped_images:
-    # print(img)
-    cv2.imshow('{n}'.format(n = n), img)
-    n += 1
+    import RecordScreen
 
-cv2.waitKey(0)
-# # gray = cv2.cvtColor(snapshot, cv2.COLOR_BGR2GRAY)
-# test = crop_boxes(snapshot)
-# print(test)
+    snapshot = RecordScreen.screenGrab()
+    # snapshot.show()
+    cropped_images = crop_boxes(snapshot)
+    n = 0
+    for img in cropped_images:
+        # print(img)
+        cv2.imshow('{n}'.format(n = n), img)
+        n += 1
+
+    cv2.waitKey(0)
+    # # gray = cv2.cvtColor(snapshot, cv2.COLOR_BGR2GRAY)
+    # test = crop_boxes(snapshot)
+    # print(test)
