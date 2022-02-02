@@ -2,6 +2,6 @@ PyQt5
 pandas
 numpy
 pytesseract
-cv2
-win32gui
-PIL
+opencv-python
+pywin32
+Pillow
