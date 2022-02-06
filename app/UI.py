@@ -8,7 +8,7 @@ import BoxDetection
 import OCR
 import RuneEfficiency
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType("app\dependencies\SWtemplate_v3.ui")
+Ui_MainWindow, QtBaseClass = uic.loadUiType("app\dependencies\SWtemplate.ui")
 
 class MyApp(QMainWindow):
     def __init__(self):

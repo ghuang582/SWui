@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>SWui</class>
+ <widget class="QMainWindow" name="SWui">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>180</width>
-    <height>268</height>
+    <width>329</width>
+    <height>252</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SWui</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(19, 24, 30);
+color: rgb(146, 151, 158);
+font: 8pt &quot;MS Shell Dlg 2&quot;;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <widget class="QGroupBox" name="Rune">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(32, 37, 43);
+border: 0;
+</string>
+      </property>
       <property name="title">
-       <string>Rune</string>
+       <string/>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QLabel" name="MainStat">
          <property name="font">
           <font>
+           <family>MS Shell Dlg 2</family>
            <pointsize>10</pointsize>
            <weight>75</weight>
+           <italic>false</italic>
            <bold>true</bold>
-           <kerning>true</kerning>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 173, 73);
+font: 10pt &quot;MS Shell Dlg 2&quot;;
+font: bold;</string>
          </property>
          <property name="text">
           <string>Main Stat</string>
@@ -40,9 +59,17 @@
         <widget class="QLabel" name="Rarity">
          <property name="font">
           <font>
-           <pointsize>10</pointsize>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
            <italic>true</italic>
+           <bold>false</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(255, 255, 255);
+font: 9pt;
+font: italic;</string>
          </property>
          <property name="text">
           <string>Rarity</string>
@@ -53,8 +80,17 @@
         <widget class="QLabel" name="Innate">
          <property name="font">
           <font>
+           <family>MS Shell Dlg 2</family>
+           <pointsize>8</pointsize>
+           <weight>50</weight>
            <italic>true</italic>
+           <bold>false</bold>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 8pt &quot;MS Shell Dlg 2&quot;;
+font: italic;
+</string>
          </property>
          <property name="text">
           <string>Innate</string>
@@ -91,6 +127,18 @@
        </item>
        <item row="4" column="0" colspan="2">
         <widget class="Line" name="line">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="midLineWidth">
+          <number>0</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -100,13 +148,22 @@
         <widget class="QLabel" name="CurrEff_Label">
          <property name="font">
           <font>
+           <family>MS Sans Serif</family>
+           <pointsize>8</pointsize>
            <weight>75</weight>
+           <italic>false</italic>
            <bold>true</bold>
            <underline>true</underline>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 8pt &quot;MS Sans Serif&quot;;
+font: bold;	
+text-decoration: underline;
+color: rgb(255, 173, 73);</string>
+         </property>
          <property name="text">
-          <string>Current</string>
+          <string>Current Efficiency</string>
          </property>
         </widget>
        </item>
@@ -114,13 +171,22 @@
         <widget class="QLabel" name="MaxEff_label">
          <property name="font">
           <font>
+           <family>MS Sans Serif</family>
+           <pointsize>8</pointsize>
            <weight>75</weight>
+           <italic>false</italic>
            <bold>true</bold>
            <underline>true</underline>
           </font>
          </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 8pt &quot;MS Sans Serif&quot;;
+font: bold;
+text-decoration: underline;
+color: rgb(255, 173, 73);</string>
+         </property>
          <property name="text">
-          <string>Max</string>
+          <string>Max Efficiency</string>
          </property>
         </widget>
        </item>
@@ -143,6 +209,21 @@
     </item>
     <item row="1" column="0">
      <widget class="QPushButton" name="CallUpdate">
+      <property name="font">
+       <font>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(32, 37, 43);
+font: 75 10pt &quot;MS Shell Dlg 2&quot;;
+font: bold;
+color: rgb(255, 173, 73);</string>
+      </property>
       <property name="text">
        <string>Update</string>
       </property>
