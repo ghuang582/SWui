@@ -15,7 +15,7 @@ It first searches for any boxes (green rectangle in above image) on the emulator
 **Installing:**
 1. Clone or download the repository
     ```
-    git clone https://github.com/ghuang582/SWOverlay
+    git clone https://github.com/ghuang582/SWui
     ```
 2. Install required Python libraries using requirements.txt. Make sure your terminal is in the directory of the cloned repository.
 
