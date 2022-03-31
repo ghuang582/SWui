@@ -120,6 +120,10 @@ manual_adjustments = [
     , ("CRIDmg", "CRI Dmg")
     , ("S12 CRIDmg", "CRI Dmg")
     , ("EF", "DEF")
+    , ("Acourecy", "Accuracy")
+    , ("CRI Ding", "CRI Dmg")
+    , ("P0", "SPD")
+    , ("Accurecy", "Accuracy")
 ]
 
 # Function to fix common OCR errors.
